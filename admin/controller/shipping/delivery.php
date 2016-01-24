@@ -67,20 +67,20 @@ class ControllerShippingDelivery extends Controller {
 			$data['delivery_cost'] = $this->config->get('delivery_cost');
 		}
 
-		if (isset($this->request->post['flat_tax_class_id'])) {
-			$data['flat_tax_class_id'] = $this->request->post['flat_tax_class_id'];
+		if (isset($this->request->post['delivery_tax_class_id'])) {
+			$data['delivery_tax_class_id'] = $this->request->post['delivery_tax_class_id'];
 		} else {
-			$data['flat_tax_class_id'] = $this->config->get('flat_tax_class_id');
+			$data['delivery_tax_class_id'] = $this->config->get('delivery_tax_class_id');
 		}
 
 		$this->load->model('localisation/tax_class');
 
 		$data['tax_classes'] = $this->model_localisation_tax_class->getTaxClasses();
 
-		if (isset($this->request->post['flat_geo_zone_id'])) {
-			$data['flat_geo_zone_id'] = $this->request->post['flat_geo_zone_id'];
+		if (isset($this->request->post['delivery_geo_zone_id'])) {
+			$data['delivery_geo_zone_id'] = $this->request->post['delivery_geo_zone_id'];
 		} else {
-			$data['flat_geo_zone_id'] = $this->config->get('flat_geo_zone_id');
+			$data['delivery_geo_zone_id'] = $this->config->get('delivery_geo_zone_id');
 		}
 
 		$this->load->model('localisation/geo_zone');
