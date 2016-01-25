@@ -19,23 +19,30 @@ class ControllerShippingDelivery extends Controller
       $this->response->redirect($this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL'));
     }
 
-    $data['heading_title'] = $this->language->get('heading_title');
-    
-    $data['text_edit'] = $this->language->get('text_edit');
-    $data['text_enabled'] = $this->language->get('text_enabled');
-    $data['text_disabled'] = $this->language->get('text_disabled');
-    $data['text_all_zones'] = $this->language->get('text_all_zones');
-    $data['text_none'] = $this->language->get('text_none');
-
-    $data['entry_cost'] = $this->language->get('entry_cost');
-    $data['entry_tax_class'] = $this->language->get('entry_tax_class');
-    $data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
-    $data['entry_status'] = $this->language->get('entry_status');
-    $data['entry_sort_order'] = $this->language->get('entry_sort_order');
-
-    $data['button_save'] = $this->language->get('button_save');
-    $data['button_cancel'] = $this->language->get('button_cancel');
-
+    $arrKeys = array(
+       'heading_title'
+      ,'text_edit'
+      ,'text_enabled'
+      ,'text_disabled'
+      ,'text_all_zones'
+      ,'text_none'
+      ,'entry_mile_cost'
+      ,'entry_labor_cost_hr'
+      ,'entry_staging_min'
+      ,'entry_dropoff_min'
+      ,'entry_origin_addr'
+      ,'entry_api_key'
+      ,'entry_dist_api_debug'
+      ,'entry_tax_class'
+      ,'entry_geo_zone'
+      ,'entry_status'
+      ,'entry_sort_order'
+      ,'button_save'
+      ,'button_cancel'
+    );
+    foreach ( $arrKeys as $key )
+      $data[$key] = $this->language->get($key);
+        
     if (isset($this->error['warning'])) {
       $data['error_warning'] = $this->error['warning'];
     } else {
@@ -63,10 +70,25 @@ class ControllerShippingDelivery extends Controller
 
     $data['cancel'] = $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL');
 
-    if (isset($this->request->post['delivery_cost'])) {
-      $data['delivery_cost'] = $this->request->post['delivery_cost'];
-    } else {
-      $data['delivery_cost'] = $this->config->get('delivery_cost');
+    $arrKeys = array(
+       'delivery_labor_cost_hr'
+      ,'delivery_mile_cost'
+      ,'delivery_staging_min'
+      ,'delivery_dropoff_min'
+      ,'delivery_api_key'
+      ,'delivery_dist_api_debug'
+      ,'delivery_origin_addr'
+      ,'delivery_geo_zone_id'
+      ,'delivery_status'
+      ,'delivery_sort_order'
+    );
+    foreach ( $arrKeys as $key )
+    {
+      if (isset($this->request->post[$key])) {
+        $data[$key] = $this->request->post[$key];
+      } else {
+        $data[$key] = $this->config->get($key);
+      }
     }
 
     if (isset($this->request->post['delivery_tax_class_id'])) {
@@ -79,27 +101,9 @@ class ControllerShippingDelivery extends Controller
 
     $data['tax_classes'] = $this->model_localisation_tax_class->getTaxClasses();
 
-    if (isset($this->request->post['delivery_geo_zone_id'])) {
-      $data['delivery_geo_zone_id'] = $this->request->post['delivery_geo_zone_id'];
-    } else {
-      $data['delivery_geo_zone_id'] = $this->config->get('delivery_geo_zone_id');
-    }
-
     $this->load->model('localisation/geo_zone');
 
     $data['geo_zones'] = $this->model_localisation_geo_zone->getGeoZones();
-
-    if (isset($this->request->post['delivery_status'])) {
-      $data['delivery_status'] = $this->request->post['delivery_status'];
-    } else {
-      $data['delivery_status'] = $this->config->get('delivery_status');
-    }
-
-    if (isset($this->request->post['delivery_sort_order'])) {
-      $data['delivery_sort_order'] = $this->request->post['delivery_sort_order'];
-    } else {
-      $data['delivery_sort_order'] = $this->config->get('delivery_sort_order');
-    }
 
     $data['header'] = $this->load->controller('common/header');
     $data['column_left'] = $this->load->controller('common/column_left');

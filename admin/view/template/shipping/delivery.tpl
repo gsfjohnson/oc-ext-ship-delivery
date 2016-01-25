@@ -26,22 +26,51 @@
       <div class="panel-body">
         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-flat" class="form-horizontal">
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-cost"><?php echo $entry_cost; ?></label>
+            <label class="col-sm-2 control-label" for="input-cost"><?php echo $entry_labor_cost_hr; ?></label>
             <div class="col-sm-10">
-              <input type="text" name="delivery_cost" value="<?php echo $delivery_cost; ?>" placeholder="<?php echo $entry_cost; ?>" id="input-cost" class="form-control" />
+              <input type="text" name="delivery_labor_cost_hr" value="<?php echo $delivery_labor_cost_hr; ?>" placeholder="<?php echo $entry_labor_cost_hr; ?>" id="input-cost" class="form-control" />
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-tax-class"><?php echo $entry_tax_class; ?></label>
+            <label class="col-sm-2 control-label" for="input-cost"><?php echo $entry_mile_cost; ?></label>
             <div class="col-sm-10">
-              <select name="delivery_tax_class_id" id="input-tax-class" class="form-control">
-                <option value="0"><?php echo $text_none; ?></option>
-                <?php foreach ($tax_classes as $tax_class) { ?>
-                <?php if ($tax_class['tax_class_id'] == $delivery_tax_class_id) { ?>
-                <option value="<?php echo $tax_class['tax_class_id']; ?>" selected="selected"><?php echo $tax_class['title']; ?></option>
+              <input type="text" name="delivery_mile_cost" value="<?php echo $delivery_mile_cost; ?>" placeholder="<?php echo $entry_mile_cost; ?>" id="input-cost" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-cost"><?php echo $entry_staging_min; ?></label>
+            <div class="col-sm-10">
+              <input type="text" name="delivery_staging_min" value="<?php echo $delivery_staging_min; ?>" placeholder="<?php echo $entry_staging_min; ?>" id="input-cost" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-cost"><?php echo $entry_dropoff_min; ?></label>
+            <div class="col-sm-10">
+              <input type="text" name="delivery_dropoff_min" value="<?php echo $delivery_dropoff_min; ?>" placeholder="<?php echo $entry_dropoff_min; ?>" id="input-cost" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-cost"><?php echo $entry_origin_addr; ?></label>
+            <div class="col-sm-10">
+              <input type="text" name="delivery_origin_addr" value="<?php echo $delivery_origin_addr; ?>" placeholder="<?php echo $entry_origin_addr; ?>" id="input-cost" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-cost"><?php echo $entry_api_key; ?></label>
+            <div class="col-sm-10">
+              <input type="text" name="delivery_api_key" value="<?php echo $delivery_api_key; ?>" placeholder="<?php echo $entry_api_key; ?>" id="input-cost" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_dist_api_debug; ?></label>
+            <div class="col-sm-10">
+              <select name="delivery_dist_api_debug" id="input-status" class="form-control">
+                <?php if ($delivery_dist_api_debug) { ?>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
                 <?php } else { ?>
-                <option value="<?php echo $tax_class['tax_class_id']; ?>"><?php echo $tax_class['title']; ?></option>
-                <?php } ?>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
                 <?php } ?>
               </select>
             </div>
