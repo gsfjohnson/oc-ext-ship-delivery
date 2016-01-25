@@ -4,8 +4,8 @@ $_['heading_title']    = 'Delivery';
 
 // Text
 $_['text_shipping']    = 'Shipping';
-$_['text_success']     = 'Success: You have modified delivery rate shipping!';
-$_['text_edit']        = 'Edit Delivery Rate Shipping';
+$_['text_success']     = 'Success: You have modified delivery shipping!';
+$_['text_edit']        = 'Edit Delivery Shipping';
 
 // Entry
 $_['entry_cost']       = 'Cost';
@@ -15,4 +15,4 @@ $_['entry_status']     = 'Status';
 $_['entry_sort_order'] = 'Sort Order';
 
 // Error
-$_['error_permission'] = 'Warning: You do not have permission to modify delivery rate shipping!';
+$_['error_permission'] = 'Warning: You do not have permission to modify delivery shipping!';
